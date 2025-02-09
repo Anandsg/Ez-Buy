@@ -117,5 +117,19 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
     );
 
     conatiner.remove();
+    updateCartQuantity();
   });
 });
+
+const updateCartQuantity = () => {
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  document.querySelector(
+    ".js-return-to-home-link"
+  ).innerHTML = `${cartQuantity} items`;
+};
+
+updateCartQuantity();
