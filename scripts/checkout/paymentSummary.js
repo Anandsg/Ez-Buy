@@ -18,19 +18,23 @@ export function renderPaymentSummary() {
     const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
     shippingPriceCents += deliveryOption.priceCents;
   });
-  console.log(productPriceCents);
-  console.log(shippingPriceCents);
+  // console.log(productPriceCents);
+  // console.log(shippingPriceCents);
 
   const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
   const taxCents = totalBeforeTaxCents * 0.1;
   const orderTotalCents = totalBeforeTaxCents + taxCents;
-  console.log(orderTotalCents);
+  // console.log(orderTotalCents);
+  let cartQuantity = 0;
 
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
   const paymentSummaryHTML = `
           <div class="payment-summary-title">Order Summary</div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div>Items (${cartQuantity}):</div>
             <div class="payment-summary-money">
                 $${formatCurrency(productPriceCents)}
             </div>
