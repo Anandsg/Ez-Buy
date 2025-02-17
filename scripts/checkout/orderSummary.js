@@ -2,7 +2,10 @@ import { cart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
 import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"; // ESM version of dayjs
-import { deliveryOptions } from "../../data/deliveryOptions.js";
+import {
+  deliveryOptions,
+  getDeliveryOption,
+} from "../../data/deliveryOptions.js";
 
 const today = dayjs();
 
@@ -15,9 +18,7 @@ export function renderOrderSummary() {
     let matchingProduct = getProduct(productId);
     const deliveryOptionId = cartItem.deliveryOptionId;
 
-    const deliveryOption = deliveryOptions.find(
-      (option) => option.id === deliveryOptionId
-    );
+    let deliveryOption = getDeliveryOption(deliveryOptionId);
 
     const deliveryDate = deliveryOption
       ? today.add(deliveryOption.deliveryDays, "days")

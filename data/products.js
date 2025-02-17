@@ -1,3 +1,4 @@
+// function to get full product details using id
 export function getProduct(productId) {
   let matchingProduct = products.find((product) => product.id === productId);
   return matchingProduct;

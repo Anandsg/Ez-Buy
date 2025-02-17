@@ -1,7 +1,18 @@
 import { cart } from "../../data/cart.js";
+import { getProduct } from "../../data/products.js";
+import { getDeliveryOption } from "../../data/deliveryOptions.js";
 
 export function renderPaymentSummary() {
-  cart.forEach((product) => {
-    console.log(product);
+  let productPriceCents = 0;
+  let shiipingPriceCents = 0;
+
+  cart.forEach((cartItem) => {
+    const product = getProduct(cartItem.productId);
+    productPriceCents += product.priceCents * cartItem.quantity;
+
+    const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
+    shiipingPriceCents += deliveryOption.priceCents;
   });
-} 
+  console.log(productPriceCents);
+  console.log(shiipingPriceCents);
+}
