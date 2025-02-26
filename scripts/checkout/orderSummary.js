@@ -10,6 +10,7 @@ import { renderPaymentSummary } from "./paymentSummary.js";
 
 const today = dayjs();
 
+
 export function renderOrderSummary() {
   let cartSummaryHTML = "";
 
